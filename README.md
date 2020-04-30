@@ -1,6 +1,6 @@
 # Review Microservice
 
-Listening on port: 9001
+Listening on port: 9002
 
 ### Get all reviews
 curl --location --request GET 'http://localhost:9002/reviews'
