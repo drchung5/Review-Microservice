@@ -22,6 +22,7 @@ public class ReviewController {
 
   @GetMapping(value= "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Review> getReview(@PathVariable("id") Long id) {
+    System.out.println("Review Service: getReview("+id+")");
     Optional<Review> reviewWrapper = reviewRepository.findById(id);
     if(!reviewWrapper.isPresent()) {
       return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -31,6 +32,7 @@ public class ReviewController {
 
   @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getAllReviews() {
+    System.out.println("Review Service: getAllReviews()");
     Iterable<Review> reviews = reviewRepository.findAll();
     if( Iterables.size(reviews) == 0 ) {
       return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -43,6 +45,7 @@ public class ReviewController {
       produces= MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getAllReviewsForRestaurant(
       @PathVariable("restaurant_id") Long restaurant_id) {
+    System.out.println("Review Service: getAllReviewsForRestaurant("+restaurant_id+")");
     Iterable<Review> reviews = reviewRepository.findByRestaurant(restaurant_id);
     if( Iterables.size(reviews) == 0 ) {
       return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -54,6 +57,7 @@ public class ReviewController {
   public ResponseEntity<Void> insertReReview(
       @RequestBody Review review,
       UriComponentsBuilder builder) {
+    System.out.println("Review Service: insertReReview("+review.getRating()+")");
     Review r = reviewRepository.save(review);
     HttpHeaders headers = new HttpHeaders();
     headers.setLocation(builder.path("/restaurants/{id}").
