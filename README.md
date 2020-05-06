@@ -19,3 +19,9 @@ curl --location --request POST 'http://localhost:9000/reviews' \
 
 ### Get all reviews for restaurant
 curl --location --request GET 'http://localhost:9000/reviews/restaurant/1'
+
+### Access Swagger UI (in a browser)
+http://localhost:9000/swagger-ui.html
+
+### Access Database (h2) Console (in a browser)
+http://localhost:9000/h2-console
